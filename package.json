@@ -1,0 +1,24 @@
+{
+  "name": "tic-tac-toe--vue",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tobias Burger <tobias_burger@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0-beta.14",
+    "prettier": "^2.0.5",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.3",
+    "vue-loader": "^16.0.0-beta.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "yarn": "^1.22.4"
+  },
+  "dependencies": {
+    "vue": "^3.0.0-beta.14"
+  }
+}
