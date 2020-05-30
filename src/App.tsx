@@ -1,5 +1,6 @@
 import { h, defineComponent, ref } from "vue";
 import Counter from "./Counter";
+import CounterLegacy from "./CounterLegacy";
 
 // Simple "Hack" to get  JSX to work!
 const React = {
@@ -15,6 +16,7 @@ export default defineComponent({
         <Counter />
         <Counter stepSize={20} />
         <Counter initialCount={20} />
+        <CounterLegacy />
       </div>
     );
   },
