@@ -1,5 +1,6 @@
 const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
+var CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = (env = {}) => ({
   mode: env.prod ? "production" : "development",
@@ -7,7 +8,7 @@ module.exports = (env = {}) => ({
   entry: path.resolve(__dirname, "./src/main.ts"),
   output: {
     path: path.resolve(__dirname, "./dist"),
-    publicPath: "/dist/",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -46,12 +47,15 @@ module.exports = (env = {}) => ({
       vue: "@vue/runtime-dom",
     },
   },
-  plugins: [new VueLoaderPlugin()],
+  plugins: [
+    new VueLoaderPlugin(),
+    new CopyWebpackPlugin({ patterns: [{ from: "./public" }] }),
+  ],
   devServer: {
     inline: true,
     hot: true,
     stats: "minimal",
-    contentBase: __dirname,
+    contentBase: path.join(__dirname, "./public"),
     overlay: true,
   },
 });
