@@ -2,13 +2,6 @@ import { h, defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 import { State } from "./store";
 
-// Simple "Hack" to get  JSX to work!
-const React = {
-  createElement(tag: string, attributes: any | null, ...children: any[]) {
-    return h(tag, attributes, children);
-  },
-};
-
 export default defineComponent({
   setup() {
     const store = useStore<State>();

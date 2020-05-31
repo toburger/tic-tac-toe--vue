@@ -1,12 +1,5 @@
 import { h, defineComponent } from "vue";
 
-// Simple "Hack" to get  JSX to work!
-const React = {
-  createElement(tag: string, attributes: any | null, ...children: any[]) {
-    return h(tag, attributes, children);
-  },
-};
-
 export default defineComponent({
   props: {
     initialCount: Number,
