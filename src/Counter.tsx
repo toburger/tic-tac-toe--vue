@@ -13,7 +13,7 @@ export default defineComponent({
       count.value += stepSize;
     };
     const decrease = () => {
-      count.value += stepSize;
+      count.value -= stepSize;
     };
     const reset = () => {
       count.value = 0;
