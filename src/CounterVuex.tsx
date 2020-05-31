@@ -1,4 +1,6 @@
-import { h, defineComponent } from "vue";
+import { h, defineComponent, computed } from "vue";
+import { useStore } from "vuex";
+import { State } from "./store";
 
 // Simple "Hack" to get  JSX to work!
 const React = {
@@ -8,28 +10,15 @@ const React = {
 };
 
 export default defineComponent({
-  props: {
-    initialCount: Number,
-    stepSize: Number,
-  },
-  data() {
+  setup() {
+    const store = useStore<State>();
+
     return {
-      count: 0,
+      count: computed(() => store.state.count),
+      increase: () => store.dispatch("increment"),
+      decrease: () => store.dispatch("decrement"),
+      reset: () => store.dispatch("reset"), // Where is the type check?
     };
-  },
-  methods: {
-    increase() {
-      this.count += this.stepSize || 1;
-    },
-    decrease() {
-      this.count -= this.stepSize || 1;
-    },
-  },
-  computed: {
-    // Doesn't compile
-    // myCount() {
-    //     return this.count.toFixed(10)
-    // }
   },
   render() {
     return (
