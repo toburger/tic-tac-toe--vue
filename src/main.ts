@@ -1,5 +1,5 @@
 import { h, createApp } from "vue";
-import App from "./App";
+import App from "./components/App.vue";
 import store from "./store";
 
 // Simple "Hack" to get  JSX to work!

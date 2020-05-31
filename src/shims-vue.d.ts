@@ -9,3 +9,6 @@ interface React {
 }
 
 declare var React: React;
+
+declare module "*.png";
+declare module "*.svg";

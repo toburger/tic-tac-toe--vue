@@ -22,6 +22,22 @@ module.exports = (env = {}) => ({
           appendTsSuffixTo: [/\.vue$/],
         },
       },
+      {
+        test: /\.(svg|png)(\?[a-z0-9=&.]+)?$/,
+        use: "base64-inline-loader?limit=1000&name=[name].[ext]",
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "vue-style-loader",
+          {
+            loader: "css-loader",
+            // options: {
+            //   modules: true,
+            // },
+          },
+        ],
+      },
     ],
   },
   resolve: {
