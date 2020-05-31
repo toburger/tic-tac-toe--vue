@@ -2,6 +2,7 @@ import { h, defineComponent, ref } from "vue";
 import Counter from "./Counter";
 import CounterLegacy from "./CounterLegacy";
 import CounterVuex from "./CounterVuex";
+import CounterWithTemplate from "./CounterWithTemplate.vue";
 
 export default defineComponent({
   render() {
@@ -17,6 +18,8 @@ export default defineComponent({
         <CounterVuex />
         <CounterVuex />
         <CounterVuex />
+        TEMPLATE STYLE
+        <CounterWithTemplate />
       </div>
     );
   },

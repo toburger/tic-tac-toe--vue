@@ -1,7 +1,8 @@
 <template>
-  <!-- Compiles, but no Vetur support! -->
-  <h2>This is a component</h2>
-  <button @click="increase">Clicked {{ count }} times.</button>
+  <div>
+    <h2>This is a component</h2>
+    <button @click="increase">Clicked {{ count }} times.</button>
+  </div>
 </template>
 
 <script lang="ts">
