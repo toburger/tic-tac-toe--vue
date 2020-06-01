@@ -25,7 +25,7 @@ export default defineComponent({
     const store = useStore<State>();
     return {
       board: computed(() => store.state.board),
-      move: (x, y) => store.dispatch("move", { x, y }),
+      move: (x: number, y: number) => store.dispatch("move", { x, y }),
     };
   },
 });
