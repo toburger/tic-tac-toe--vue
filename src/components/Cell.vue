@@ -1,7 +1,7 @@
 <template>
   <div class="Cell">
-    <player v-if="value" :player="value" />
-    <no-player v-else />
+    <no-player v-if="value === 'EMPTY'" />
+    <player v-else :player="value" />
   </div>
 </template>
 

@@ -44,7 +44,7 @@ export const getCell = (board: Board, x: number, y: number): Cell | null =>
  * Checks if a board value can be updated (simply checks if the board contains null)
  */
 export const canUpdateCell = (board: Board, x: number, y: number): boolean =>
-  R.equals(getCell(board, x, y), null);
+  R.equals(getCell(board, x, y), "EMPTY");
 
 /**
  * Checks if all elements a row contain the same value 'v'.
@@ -56,7 +56,7 @@ const checkRowsForWinner = (board: Board, cell: Cell): boolean => {
 };
 
 /**
- * Cheks if all elements of a column contain the same value 'v'.
+ * Checks if all elements of a column contain the same value 'v'.
  * Checks all three columns.
  *
  * Uses a simple trick by transposing the board so that the whole board
@@ -69,7 +69,7 @@ const checkColsForWinner = (board: Board, cell: Cell): boolean => {
 };
 
 /**
- * Checks if all elements of a diagnola contain the same value 'v'.
+ * Checks if all elements of a diagonal contain the same value 'v'.
  * Checks the two diagonals.
  */
 const checkDiagonalsForWinner = (board: Board, cell: Cell): boolean => {
@@ -97,7 +97,7 @@ const checkForWinner = (board: Board, cell: Cell): boolean =>
  * It does check if all of the boards aren't null.
  */
 const checkForDraw = (board: Board): boolean => {
-  const check = R.all<Cell>((x) => !R.equals(x, null));
+  const check = R.all<Cell>((x) => !R.equals(x, "EMPTY"));
   return check(R.flatten(board));
 };
 
@@ -109,5 +109,5 @@ export const getWinner = (board: Board): GameState => {
   if (checkForWinner(board, "X")) return "X";
   else if (checkForWinner(board, "O")) return "O";
   else if (checkForDraw(board)) return "DRAW";
-  else return null;
+  else return "CONTINUE";
 };

@@ -9,15 +9,15 @@ export interface State {
 }
 
 const initialBoard: Board = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
+  ["EMPTY", "EMPTY", "EMPTY"],
+  ["EMPTY", "EMPTY", "EMPTY"],
+  ["EMPTY", "EMPTY", "EMPTY"],
 ];
 
 const state: State = {
   board: initialBoard,
   currentPlayer: "X",
-  winner: null,
+  winner: "CONTINUE",
 };
 
 const mutations: MutationTree<State> = {
@@ -33,11 +33,12 @@ const mutations: MutationTree<State> = {
     state.board = newBoard;
     state.currentPlayer = state.currentPlayer === "X" ? "O" : "X";
     state.winner = winner;
+    console.log("ok");
   },
   restart(state: State) {
     state.board = initialBoard;
     state.currentPlayer = "X";
-    state.winner = null;
+    state.winner = "CONTINUE";
   },
 };
 
@@ -47,7 +48,7 @@ const actions: ActionTree<State, State> = {
 };
 
 const getters: GetterTree<State, State> = {
-  isGameOver: (state) => state.winner !== null,
+  isGameOver: (state) => state.winner !== "CONTINUE",
 };
 
 export default createStore<State>({
