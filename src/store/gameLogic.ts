@@ -44,7 +44,7 @@ export const getCell = (board: Board, x: number, y: number): Cell | null =>
  * Checks if a board value can be updated (simply checks if the board contains null)
  */
 export const canUpdateCell = (board: Board, x: number, y: number): boolean =>
-  R.equals(getCell(board, x, y), "EMPTY");
+  R.equals(getCell(board, x, y), null);
 
 /**
  * Checks if all elements a row contain the same value 'v'.
@@ -97,7 +97,7 @@ const checkForWinner = (board: Board, cell: Cell): boolean =>
  * It does check if all of the boards aren't null.
  */
 const checkForDraw = (board: Board): boolean => {
-  const check = R.all<Cell>((x) => !R.equals(x, "EMPTY"));
+  const check = R.all<Cell>((x) => !R.equals(x, null));
   return check(R.flatten(board));
 };
 

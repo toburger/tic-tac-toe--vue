@@ -1,6 +1,6 @@
 <template>
   <div class="Cell">
-    <no-player v-if="value === 'EMPTY'" />
+    <no-player v-if="!value" />
     <player v-else :player="value" />
   </div>
 </template>

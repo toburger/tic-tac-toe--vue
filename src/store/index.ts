@@ -9,9 +9,9 @@ export interface State {
 }
 
 const initialBoard: Board = [
-  ["EMPTY", "EMPTY", "EMPTY"],
-  ["EMPTY", "EMPTY", "EMPTY"],
-  ["EMPTY", "EMPTY", "EMPTY"],
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
 ];
 
 const state: State = {
