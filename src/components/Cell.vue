@@ -9,6 +9,7 @@
 import { defineComponent } from "vue";
 import Player from "./Player.vue";
 import NoPlayer from "./NoPlayer.vue";
+import { Cell } from "../store/types";
 
 export default defineComponent({
   components: {
@@ -16,7 +17,7 @@ export default defineComponent({
     "no-player": NoPlayer,
   },
   props: {
-    value: String,
+    value: String as () => Cell,
   },
 });
 </script>

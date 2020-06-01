@@ -9,10 +9,11 @@
 import { defineComponent } from "vue";
 import PlayerXImage from "../assets/PlayerX.svg";
 import PlayerOImage from "../assets/PlayerO.svg";
+import { Player } from "src/store/types";
 
 export default defineComponent({
   props: {
-    player: String,
+    player: String as () => Player,
     small: Boolean,
   },
   computed: {
