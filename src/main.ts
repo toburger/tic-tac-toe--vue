@@ -12,6 +12,7 @@ const React = {
 
 const app = createApp(App);
 
+app.config.devtools = process.env.NODE_ENV === "development";
 app.use(store);
 
 app.mount("#app");
