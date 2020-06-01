@@ -1,5 +1,5 @@
 <template>
-  <div class="GameOver">
+  <div class="GameOver" v-if="gameOver">
     <img
       class="GameOver__Image"
       @click="restart"
@@ -7,10 +7,10 @@
       alt="Restart"
     />
     <p class="GameOver__Text">
-      <span v-if="isDraw">It's a draw!</span>
-      <span v-else>
+      <span v-if="gameOver.type === 'DRAW'">It's a draw!</span>
+      <span v-else-if="gameOver.type === 'WINNER'">
         Player
-        <player :player="winner" small />
+        <player :player="gameOver.player" small />
         wins!
       </span>
     </p>
@@ -31,8 +31,10 @@ export default defineComponent({
   setup() {
     const store = useStore<State>();
     return {
-      winner: store.state.winner,
-      isDraw: computed(() => store.state.winner === "DRAW"),
+      gameOver: computed(
+        () =>
+          store.state.winner.type === "GAME_OVER" && store.state.winner.gameOver
+      ),
       restart: () => store.dispatch("restart"),
     };
   },

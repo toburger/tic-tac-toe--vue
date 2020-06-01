@@ -1,19 +1,14 @@
-/**
- * All functions expect the following 2D array as input for 'board':
- * const board =
- *   [[null, null, null],
- *    [null, null, null],
- *    [null, null, null]];
- *
- * The board values can be either:
- * * "X": PlayerX
- * * "O": PlayerO
- * * null
- */
-
 // This lib contains powerful functions for list transformations.
 import * as R from "ramda";
-import { Board, Cell, GameState } from "./types";
+import {
+  Board,
+  Cell,
+  gameOver,
+  winner,
+  player,
+  GameState,
+  empty,
+} from "./types";
 
 /**
  * Helps debugging the board
@@ -44,7 +39,7 @@ export const getCell = (board: Board, x: number, y: number): Cell | null =>
  * Checks if a board value can be updated (simply checks if the board contains null)
  */
 export const canUpdateCell = (board: Board, x: number, y: number): boolean =>
-  R.equals(getCell(board, x, y), null);
+  R.equals(getCell(board, x, y), empty());
 
 /**
  * Checks if all elements a row contain the same value 'v'.
@@ -97,7 +92,7 @@ const checkForWinner = (board: Board, cell: Cell): boolean =>
  * It does check if all of the boards aren't null.
  */
 const checkForDraw = (board: Board): boolean => {
-  const check = R.all<Cell>((x) => !R.equals(x, null));
+  const check = R.all<Cell>((x) => !R.equals(x, { type: "EMPTY" }));
   return check(R.flatten(board));
 };
 
@@ -106,8 +101,14 @@ const checkForDraw = (board: Board): boolean => {
  * If null is returned the game continues.
  */
 export const getWinner = (board: Board): GameState => {
-  if (checkForWinner(board, "X")) return "X";
-  else if (checkForWinner(board, "O")) return "O";
-  else if (checkForDraw(board)) return "DRAW";
-  else return null;
+  if (checkForWinner(board, player("X")))
+    // player X wins!
+    return gameOver(winner("X"));
+  else if (checkForWinner(board, player("O")))
+    // player O wins!
+    return gameOver(winner("O"));
+  else if (checkForDraw(board))
+    // it'a a draw!
+    return { type: "GAME_OVER", gameOver: { type: "DRAW" } };
+  else return { type: "CONTINUE" };
 };

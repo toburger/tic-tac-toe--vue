@@ -1,6 +1,6 @@
 import { createStore, MutationTree, ActionTree, GetterTree } from "vuex";
 import * as GameLogic from "./gameLogic";
-import { Board, GameState, Player } from "./types";
+import { Board, GameState, Player, empty, player } from "./types";
 
 export interface State {
   board: Board;
@@ -9,15 +9,15 @@ export interface State {
 }
 
 const initialBoard: Board = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
+  [empty(), empty(), empty()],
+  [empty(), empty(), empty()],
+  [empty(), empty(), empty()],
 ];
 
 const state: State = {
   board: initialBoard,
   currentPlayer: "X",
-  winner: null,
+  winner: { type: "CONTINUE" },
 };
 
 const mutations: MutationTree<State> = {
@@ -27,7 +27,7 @@ const mutations: MutationTree<State> = {
       state.board,
       x,
       y,
-      state.currentPlayer
+      player(state.currentPlayer)
     );
     const winner = GameLogic.getWinner(newBoard);
     state.board = newBoard;
@@ -37,7 +37,7 @@ const mutations: MutationTree<State> = {
   restart(state: State) {
     state.board = initialBoard;
     state.currentPlayer = "X";
-    state.winner = null;
+    state.winner = { type: "CONTINUE" };
   },
 };
 
@@ -47,7 +47,7 @@ const actions: ActionTree<State, State> = {
 };
 
 const getters: GetterTree<State, State> = {
-  isGameOver: (state) => state.winner !== null,
+  isGameOver: (state) => state.winner.type == "GAME_OVER",
 };
 
 export default createStore<State>({

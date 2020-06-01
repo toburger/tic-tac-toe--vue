@@ -1,6 +1,6 @@
 <template>
   <div class="Cell">
-    <player v-if="value" :player="value" />
+    <player v-if="value.type === 'PLAYER'" :player="value.player" />
     <no-player v-else />
   </div>
 </template>
@@ -9,6 +9,7 @@
 import { defineComponent } from "vue";
 import Player from "./Player.vue";
 import NoPlayer from "./NoPlayer.vue";
+import { Cell as CellType } from "../store/types";
 
 export default defineComponent({
   components: {
@@ -16,7 +17,7 @@ export default defineComponent({
     "no-player": NoPlayer,
   },
   props: {
-    value: String,
+    value: Object as () => CellType,
   },
 });
 </script>
