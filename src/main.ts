@@ -2,6 +2,12 @@ import { h, createApp } from "vue";
 import App from "./components/App.vue";
 import store from "./store";
 
+declare module "vue" {
+  interface AppConfig {
+    devtools: boolean
+  }
+}
+
 // Simple "Hack" to get  JSX to work!
 const React = {
   createElement(tag: string, attributes: {} | null, ...children: any[]) {
