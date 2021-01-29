@@ -6,14 +6,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import PlayerXImage from "../assets/PlayerX.svg";
 import PlayerOImage from "../assets/PlayerO.svg";
 import { Player } from "src/store/types";
 
 export default defineComponent({
   props: {
-    player: String as () => Player,
+    player: { type: Object as PropType<Player>, required: true },
     small: Boolean,
   },
   computed: {

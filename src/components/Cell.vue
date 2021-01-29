@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import Player from "./Player.vue";
 import NoPlayer from "./NoPlayer.vue";
 import { Cell } from "../store/types";
@@ -17,7 +17,7 @@ export default defineComponent({
     "no-player": NoPlayer,
   },
   props: {
-    value: String as () => Cell,
+    value: { type: Object as PropType<Cell>, required: true },
   },
 });
 </script>
