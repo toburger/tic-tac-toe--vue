@@ -19,6 +19,9 @@ export default defineComponent({
   props: {
     value: { type: Object as PropType<Cell>, required: true },
   },
+  emits: {
+    click($event: any): void {}
+  }
 });
 </script>
 
